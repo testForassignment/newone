@@ -31,7 +31,7 @@ public class UserController {
 	private final Logger log = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
-	private UserService userService;
+	private final UserService userService;
 
 	public UserController(UserService userService) {
 		this.userService = userService;
@@ -44,9 +44,9 @@ public class UserController {
 	 *         body
 	 */
 	@GetMapping("/users")
-	public List<User> getUsers() {
+	public ResponseEntity<List<User>> getUsers() {
 		log.debug("REST request to get all Users");
-		return userService.getAll();
+		return new ResponseEntity<List<User>>(userService.getAll(), HttpStatus.OK);
 	}
 
 	/**
@@ -74,13 +74,13 @@ public class UserController {
 	 *
 	 * @param id
 	 *            the id of the user to delete
-	 * @return the boolean true if deleted or exception with status 500 (Internal Server Error) no class user entity with ID exists
+	 * @return the ResponseEntity with status 200 (OK) if deleted or exception with status 500 (Internal Server Error) no class user entity with ID exists
 	 */
 	@DeleteMapping("/user/{id}")
-	public Boolean deleteUser(@PathVariable Long id) {
+	public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
 		log.debug("REST request to delete User : {}", id);
 		userService.delete(id);
-		return true;
+		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
 	/**

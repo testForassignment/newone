@@ -32,15 +32,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.and().httpBasic().realmName(REALM).authenticationEntryPoint(getBasicAuthEntryPoint())
 		.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);//We don't need sessions to be created.
 	  
-	  /// =====================
-	  
-	/*  http.authorizeRequests()
-      .anyRequest().authenticated()
-      .and()
-      .formLogin()
-      .and()
-      .exceptionHandling().accessDeniedPage("/noAccess");*/
-	  
  	}
     
     @Bean
