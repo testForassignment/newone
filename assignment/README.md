@@ -1,6 +1,6 @@
 # TO CLEAN BUILD APPLICATION
 
-mvnw clean intall
+mvnw clean install
 
 # TO RUN THE APPLICATION 
 
